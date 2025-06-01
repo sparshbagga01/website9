@@ -1038,47 +1038,6 @@ $current_product = $products[$product] ?? $products['multi-track'];
             </div>
         </section>
 
-        <!-- Related Products Section -->
-        <section class="content-section">
-            <div class="container">
-                <h2 class="section-title">Related Products</h2>
-                <div class="related-products-grid">
-                    <?php
-                    // Get all products except current one
-                    $related_products = [];
-                    foreach($products as $key => $prod) {
-                        if($key != $product) {
-                            $related_products[$key] = $prod;
-                        }
-                    }
-                    
-                    // Display related products
-                    foreach($related_products as $key => $prod):
-                    ?>
-                    <div class="related-product-card">
-                        <div class="related-product-image">
-                            <span><?php echo $prod['image_alt']; ?></span>
-                        </div>
-                        <div class="related-product-info">
-                            <h3><?php echo $prod['title']; ?></h3>
-                            <p class="related-product-price"><?php echo $prod['price']; ?></p>
-                            <p class="related-product-desc"><?php echo $prod['subtitle']; ?></p>
-                            <div class="related-product-buttons">
-                                <a href="product.php?product=<?php echo $key; ?>" class="btn-view-details">View Details</a>
-                                <button class="btn-quick-quote" onclick="getQuickQuote('<?php echo $prod['title']; ?>')">Quick Quote</button>
-                            </div>
-                        </div>
-                    </div>
-                    <?php endforeach; ?>
-                </div>
-                <div class="view-all-products">
-                    <a href="all-products.php" class="btn-view-all">
-                        <span>🔍</span> View All Products
-                    </a>
-                </div>
-            </div>
-        </section>
-
         <!-- FAQ Section -->
         <section class="content-section">
             <div class="container">
@@ -1138,6 +1097,47 @@ $current_product = $products[$product] ?? $products['multi-track'];
                             <p>Regular maintenance includes daily cleaning, weekly lubrication, and monthly inspections. We provide a detailed maintenance schedule and offer annual maintenance contracts for optimal performance.</p>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Products Section -->
+        <section class="content-section">
+            <div class="container">
+                <h2 class="section-title">Related Products</h2>
+                <div class="related-products-grid">
+                    <?php
+                    // Get all products except current one
+                    $related_products = [];
+                    foreach($products as $key => $prod) {
+                        if($key != $product) {
+                            $related_products[$key] = $prod;
+                        }
+                    }
+                    
+                    // Display related products
+                    foreach($related_products as $key => $prod):
+                    ?>
+                    <div class="related-product-card">
+                        <div class="related-product-image">
+                            <span><?php echo $prod['image_alt']; ?></span>
+                        </div>
+                        <div class="related-product-info">
+                            <h3><?php echo $prod['title']; ?></h3>
+                            <p class="related-product-price"><?php echo $prod['price']; ?></p>
+                            <p class="related-product-desc"><?php echo $prod['subtitle']; ?></p>
+                            <div class="related-product-buttons">
+                                <a href="product.php?product=<?php echo $key; ?>" class="btn-view-details">View Details</a>
+                                <button class="btn-quick-quote" onclick="getQuickQuote('<?php echo $prod['title']; ?>')">Quick Quote</button>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+                <div class="view-all-products">
+                    <a href="all-products.php" class="btn-view-all">
+                        <span>🔍</span> View All Products
+                    </a>
                 </div>
             </div>
         </section>
