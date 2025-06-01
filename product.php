@@ -561,6 +561,141 @@
             font-size: 1.5rem;
         }
 
+        /* Related Products */
+        .related-products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .related-product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #e0e0e0;
+        }
+
+        .related-product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 102, 0, 0.15);
+            border-color: #ff6600;
+        }
+
+        .related-product-image {
+            height: 200px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: #666;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .related-product-info {
+            padding: 1.5rem;
+        }
+
+        .related-product-info h3 {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+            line-height: 1.3;
+        }
+
+        .related-product-price {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #ff6600;
+            margin-bottom: 0.5rem;
+        }
+
+        .related-product-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .related-product-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-view-details {
+            background: #ff6600;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+        }
+
+        .btn-view-details:hover {
+            background: #e55a00;
+        }
+
+        .btn-quick-quote {
+            background: transparent;
+            color: #ff6600;
+            padding: 8px 16px;
+            border: 2px solid #ff6600;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+        }
+
+        .btn-quick-quote:hover {
+            background: #ff6600;
+            color: white;
+        }
+
+        .view-all-products {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .btn-view-all {
+            background: linear-gradient(135deg, #ff6600, #e55a00);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(255, 102, 0, 0.3);
+        }
+
+        .btn-view-all:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 102, 0, 0.4);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .header-content {
@@ -604,6 +739,14 @@
             .features-grid,
             .benefits-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .related-products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .related-product-buttons {
+                flex-direction: column;
             }
 
             .product-title {
@@ -673,6 +816,7 @@ $current_product = $products[$product] ?? $products['multi-track'];
                         <li class="dropdown">
                             <a href="#products"><span class="nav-icon">⚙️</span> Products ▼</a>
                             <div class="dropdown-content">
+                                <a href="all-products.php">All Products</a>
                                 <a href="product.php?product=multi-track">Multi Track Packing Machine</a>
                                 <a href="product.php?product=pouch-packing">Pouch Packing Machine</a>
                                 <a href="product.php?product=multi-track-pouch">Multi Track Pouch Packing Machine</a>
@@ -894,6 +1038,47 @@ $current_product = $products[$product] ?? $products['multi-track'];
             </div>
         </section>
 
+        <!-- Related Products Section -->
+        <section class="content-section">
+            <div class="container">
+                <h2 class="section-title">Related Products</h2>
+                <div class="related-products-grid">
+                    <?php
+                    // Get all products except current one
+                    $related_products = [];
+                    foreach($products as $key => $prod) {
+                        if($key != $product) {
+                            $related_products[$key] = $prod;
+                        }
+                    }
+                    
+                    // Display related products
+                    foreach($related_products as $key => $prod):
+                    ?>
+                    <div class="related-product-card">
+                        <div class="related-product-image">
+                            <span><?php echo $prod['image_alt']; ?></span>
+                        </div>
+                        <div class="related-product-info">
+                            <h3><?php echo $prod['title']; ?></h3>
+                            <p class="related-product-price"><?php echo $prod['price']; ?></p>
+                            <p class="related-product-desc"><?php echo $prod['subtitle']; ?></p>
+                            <div class="related-product-buttons">
+                                <a href="product.php?product=<?php echo $key; ?>" class="btn-view-details">View Details</a>
+                                <button class="btn-quick-quote" onclick="getQuickQuote('<?php echo $prod['title']; ?>')">Quick Quote</button>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+                <div class="view-all-products">
+                    <a href="all-products.php" class="btn-view-all">
+                        <span>🔍</span> View All Products
+                    </a>
+                </div>
+            </div>
+        </section>
+
         <!-- FAQ Section -->
         <section class="content-section">
             <div class="container">
@@ -1012,6 +1197,12 @@ $current_product = $products[$product] ?? $products['multi-track'];
         // Download catalog function
         function downloadCatalog() {
             alert('Catalog download will be available soon. Please contact us for detailed product information.');
+        }
+
+        // Quick Quote Function
+        function getQuickQuote(productName) {
+            const message = `Hi, I need a quick quote for ${productName}. Please provide pricing and availability details.`;
+            window.open(`https://wa.me/919876543210?text=${encodeURIComponent(message)}`, '_blank');
         }
 
         // Smooth Scrolling for Anchor Links

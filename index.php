@@ -976,6 +976,7 @@
                         <li class="dropdown">
                             <a href="#products"><span class="nav-icon">⚙️</span> Products ▼</a>
                             <div class="dropdown-content">
+                                <a href="all-products.php">All Products</a>
                                 <a href="product.php?product=multi-track">Multi Track Packing Machine</a>
                                 <a href="product.php?product=pouch-packing">Pouch Packing Machine</a>
                                 <a href="product.php?product=multi-track-pouch">Multi Track Pouch Packing Machine</a>
