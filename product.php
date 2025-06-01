@@ -70,37 +70,80 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 1.5rem;
+            gap: 2rem;
             align-items: center;
-            flex-wrap: wrap;
         }
 
         nav a {
             color: #333;
             text-decoration: none;
             font-weight: 500;
-            transition: all 0.3s;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             padding: 8px 12px;
             border-radius: 5px;
-            font-size: 0.9rem;
-            white-space: nowrap;
         }
 
         nav a:hover {
             color: #ff6600;
             background: #f8f9fa;
-            transform: translateY(-1px);
         }
 
-        nav a[href="index.php"] {
+        .nav-icon {
+            font-size: 1.1rem;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: white;
+            min-width: 250px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            top: 100%;
+            left: 0;
+            z-index: 1001;
+            border-radius: 5px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 12px 16px;
+            border-bottom: 1px solid #f0f0f0;
+            color: #333;
+        }
+
+        .dropdown-content a:hover {
+            background: #f8f9fa;
+            color: #ff6600;
+        }
+
+        .download-btn {
             background: #ff6600;
             color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
             font-weight: bold;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        nav a[href="index.php"]:hover {
+        .download-btn:hover {
             background: #e55a00;
-            color: white;
         }
 
         /* Main Content */
@@ -525,16 +568,24 @@
                 gap: 1rem;
             }
 
+            .logo-section {
+                justify-content: center;
+            }
+
             nav ul {
                 flex-direction: column;
-                gap: 0.5rem;
+                gap: 1rem;
                 width: 100%;
                 text-align: center;
             }
 
-            nav a {
-                font-size: 0.8rem;
-                padding: 6px 10px;
+            .dropdown-content {
+                position: static;
+                display: block;
+                box-shadow: none;
+                border: none;
+                background: #f8f9fa;
+                margin-top: 0.5rem;
             }
 
             .product-layout {
@@ -617,12 +668,20 @@ $current_product = $products[$product] ?? $products['multi-track'];
                 </div>
                 <nav>
                     <ul>
-                        <li><a href="index.php">🏠 Home</a></li>
-                        <li><a href="product.php?product=multi-track">Multi Track Packing Machine</a></li>
-                        <li><a href="product.php?product=pouch-packing">Pouch Packing Machine</a></li>
-                        <li><a href="product.php?product=multi-track-pouch">Multi Track Pouch Packing Machine</a></li>
-                        <li><a href="product.php?product=tomato-ketchup">Tomato Ketchup Pouch Packing Machine</a></li>
-                        <li><a href="product.php?product=sauce-pouch">Sauce Pouch Packaging Machine</a></li>
+                        <li><a href="index.php"><span class="nav-icon">🏠</span> Home</a></li>
+                        <li><a href="index.php#about"><span class="nav-icon">ℹ️</span> About Us</a></li>
+                        <li class="dropdown">
+                            <a href="#products"><span class="nav-icon">⚙️</span> Products ▼</a>
+                            <div class="dropdown-content">
+                                <a href="product.php?product=multi-track">Multi Track Packing Machine</a>
+                                <a href="product.php?product=pouch-packing">Pouch Packing Machine</a>
+                                <a href="product.php?product=multi-track-pouch">Multi Track Pouch Packing Machine</a>
+                                <a href="product.php?product=tomato-ketchup">Tomato Ketchup Pouch Packing Machine</a>
+                                <a href="product.php?product=sauce-pouch">Sauce Pouch Packaging Machine</a>
+                            </div>
+                        </li>
+                        <li><a href="index.php#contact"><span class="nav-icon">📞</span> Contact</a></li>
+                        <li><button class="download-btn" onclick="downloadCatalog()"><span class="nav-icon">📁</span> Catalog</button></li>
                     </ul>
                 </nav>
             </div>
@@ -948,6 +1007,11 @@ $current_product = $products[$product] ?? $products['multi-track'];
         function openWhatsApp() {
             const message = `Hi, I'm viewing the <?php echo $current_product['title']; ?> page. Please provide more information about this product.`;
             window.open(`https://wa.me/919876543210?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        // Download catalog function
+        function downloadCatalog() {
+            alert('Catalog download will be available soon. Please contact us for detailed product information.');
         }
 
         // Smooth Scrolling for Anchor Links
