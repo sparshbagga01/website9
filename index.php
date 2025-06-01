@@ -976,11 +976,11 @@
                         <li class="dropdown">
                             <a href="#products"><span class="nav-icon">⚙️</span> Products ▼</a>
                             <div class="dropdown-content">
-                                <a href="#products">Multi Track Packing Machine</a>
-                                <a href="#products">Pouch Packing Machine</a>
-                                <a href="#products">Multi Track Pouch Packing Machine</a>
-                                <a href="#products">Tomato Ketchup Pouch Packing Machine</a>
-                                <a href="#products">Sauce Pouch Packaging Machine</a>
+                                <a href="product.php?product=multi-track">Multi Track Packing Machine</a>
+                                <a href="product.php?product=pouch-packing">Pouch Packing Machine</a>
+                                <a href="product.php?product=multi-track-pouch">Multi Track Pouch Packing Machine</a>
+                                <a href="product.php?product=tomato-ketchup">Tomato Ketchup Pouch Packing Machine</a>
+                                <a href="product.php?product=sauce-pouch">Sauce Pouch Packaging Machine</a>
                             </div>
                         </li>
                         <li><a href="#contact"><span class="nav-icon">📞</span> Contact</a></li>
