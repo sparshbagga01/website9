@@ -742,6 +742,103 @@
             z-index: 2;
         }
 
+        /* Call to Action Section */
+        .cta-section {
+            background: #f8f9fa;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            min-width: 200px;
+            justify-content: center;
+        }
+
+        .cta-btn.primary {
+            background: #ff6600;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 102, 0, 0.3);
+        }
+
+        .cta-btn.primary:hover {
+            background: #e55a00;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 102, 0, 0.4);
+        }
+
+        .cta-btn.secondary {
+            background: transparent;
+            color: #ff6600;
+            border: 2px solid #ff6600;
+        }
+
+        .cta-btn.secondary:hover {
+            background: #ff6600;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .cta-btn.whatsapp {
+            background: #25d366;
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .cta-btn.whatsapp:hover {
+            background: #1ea952;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .cta-content h2 {
+                font-size: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .cta-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
         /* Footer */
         footer {
             background: #000;
@@ -1114,6 +1211,27 @@
                 </div>
             </div>
         </section>
+
+        <!-- Call to Action Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Ready to Enhance Your Packaging Process?</h2>
+                    <p>Contact us today for a free consultation and discover how our packaging solutions can optimize your production line.</p>
+                    <div class="cta-buttons">
+                        <button class="cta-btn primary">
+                            <span>📞</span> GET FREE CONSULTATION
+                        </button>
+                        <button class="cta-btn secondary">
+                            <span>📁</span> DOWNLOAD CATALOG
+                        </button>
+                        <button class="cta-btn whatsapp">
+                            <span>💬</span> WHATSAPP US
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
@@ -1204,6 +1322,22 @@
         // Download catalog button
         document.querySelector('.download-btn').addEventListener('click', function() {
             alert('Catalog download will be available soon. Please contact us for detailed product information.');
+        });
+
+        // CTA Section buttons
+        document.querySelector('.cta-btn.primary').addEventListener('click', function() {
+            document.querySelector('#contact').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        document.querySelector('.cta-btn.secondary').addEventListener('click', function() {
+            alert('Catalog download will be available soon. Please contact us for detailed product information.');
+        });
+
+        document.querySelector('.cta-btn.whatsapp').addEventListener('click', function() {
+            const message = `Hi, I want to enhance my packaging process. Please provide free consultation details.`;
+            window.open(`https://wa.me/919876543210?text=${encodeURIComponent(message)}`, '_blank');
         });
 
         // Hero buttons
