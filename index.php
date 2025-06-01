@@ -26,14 +26,15 @@
 
         /* Header */
         header {
-            background: linear-gradient(135deg, #000 0%, #333 100%);
-            color: white;
+            background: white;
+            color: #333;
             padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-bottom: 1px solid #e0e0e0;
         }
 
         .header-content {
@@ -42,27 +43,57 @@
             align-items: center;
         }
 
-        .logo {
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: #ff6600;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .company-name {
             font-size: 1.8rem;
             font-weight: bold;
-            color: #ff6600;
+            color: #333;
         }
 
         nav ul {
             display: flex;
             list-style: none;
             gap: 2rem;
+            align-items: center;
         }
 
         nav a {
-            color: white;
+            color: #333;
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 8px 12px;
+            border-radius: 5px;
         }
 
         nav a:hover {
             color: #ff6600;
+            background: #f8f9fa;
+        }
+
+        .nav-icon {
+            font-size: 1.1rem;
         }
 
         .dropdown {
@@ -72,12 +103,14 @@
         .dropdown-content {
             display: none;
             position: absolute;
-            background: #333;
+            background: white;
             min-width: 250px;
             box-shadow: 0 8px 16px rgba(0,0,0,0.2);
             top: 100%;
             left: 0;
             z-index: 1001;
+            border-radius: 5px;
+            border: 1px solid #e0e0e0;
         }
 
         .dropdown:hover .dropdown-content {
@@ -87,7 +120,13 @@
         .dropdown-content a {
             display: block;
             padding: 12px 16px;
-            border-bottom: 1px solid #555;
+            border-bottom: 1px solid #f0f0f0;
+            color: #333;
+        }
+
+        .dropdown-content a:hover {
+            background: #f8f9fa;
+            color: #ff6600;
         }
 
         .download-btn {
@@ -99,6 +138,9 @@
             cursor: pointer;
             font-weight: bold;
             transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .download-btn:hover {
@@ -394,10 +436,26 @@
                 gap: 1rem;
             }
 
+            .logo-section {
+                justify-content: center;
+            }
+
             nav ul {
                 flex-direction: column;
                 gap: 1rem;
+                width: 100%;
+                text-align: center;
             }
+
+            .dropdown-content {
+                position: static;
+                display: block;
+                box-shadow: none;
+                border: none;
+                background: #f8f9fa;
+                margin-top: 0.5rem;
+            }
+        }
 
             .hero h1 {
                 font-size: 2rem;
@@ -418,13 +476,16 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">Avtaar Mechanical Works</div>
+                <div class="logo-section">
+                    <div class="logo-icon">A</div>
+                    <div class="company-name">Avtaar Mechanical Works</div>
+                </div>
                 <nav>
                     <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#home"><span class="nav-icon">🏠</span> Home</a></li>
+                        <li><a href="#about"><span class="nav-icon">ℹ️</span> About Us</a></li>
                         <li class="dropdown">
-                            <a href="#products">Products ▼</a>
+                            <a href="#products"><span class="nav-icon">⚙️</span> Products ▼</a>
                             <div class="dropdown-content">
                                 <a href="#products">Multi Track Packing Machine</a>
                                 <a href="#products">Pouch Packing Machine</a>
@@ -433,17 +494,8 @@
                                 <a href="#products">Sauce Pouch Packaging Machine</a>
                             </div>
                         </li>
-                        <li class="dropdown">
-                            <a href="#industry">Industry We Serve ▼</a>
-                            <div class="dropdown-content">
-                                <a href="#industry">Food & Beverage</a>
-                                <a href="#industry">Pharmaceutical</a>
-                                <a href="#industry">Chemical</a>
-                                <a href="#industry">Agriculture</a>
-                            </div>
-                        </li>
-                        <li><a href="#contact">Contact Us</a></li>
-                        <li><button class="download-btn">Download Catalog</button></li>
+                        <li><a href="#contact"><span class="nav-icon">📞</span> Contact</a></li>
+                        <li><button class="download-btn"><span class="nav-icon">📁</span> Catalog</button></li>
                     </ul>
                 </nav>
             </div>
