@@ -1,31 +1,9 @@
-<?php
-// Include admin config to access data
-require_once 'admin/config.php';
-
-// Get product from URL parameter
-$product = isset($_GET['product']) ? $_GET['product'] : 'multi-track';
-
-// Load products from admin data
-$products = loadData(PRODUCTS_FILE);
-
-// Get current product data
-$current_product = $products[$product] ?? null;
-
-// If product not found, redirect to all products
-if (!$current_product) {
-    header('Location: all-products.php');
-    exit();
-}
-
-// Load settings for contact info
-$settings = loadData(SETTINGS_FILE);
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo htmlspecialchars($current_product['title']); ?> - Avtaar Mechanical Works</title>
+    <title>Multi Track Packing Machine - Avtaar Mechanical Works</title>
     <style>
         * {
             margin: 0;
@@ -442,6 +420,56 @@ $settings = loadData(SETTINGS_FILE);
             background: #fff3e0;
         }
 
+        /* Benefits */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .benefit-item {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 102, 0, 0.1);
+            border-color: #ff6600;
+        }
+
+        .benefit-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ff6600, #e55a00);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: 0 5px 15px rgba(255, 102, 0, 0.3);
+        }
+
+        .benefit-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .benefit-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
         /* FAQ */
         .faq-container {
             background: white;
@@ -504,6 +532,33 @@ $settings = loadData(SETTINGS_FILE);
         .faq-answer p {
             color: #666;
             line-height: 1.6;
+        }
+
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp-float span {
+            color: white;
+            font-size: 1.5rem;
         }
 
         /* Related Products */
@@ -641,33 +696,6 @@ $settings = loadData(SETTINGS_FILE);
             box-shadow: 0 8px 20px rgba(255, 102, 0, 0.4);
         }
 
-        /* WhatsApp Float Button */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background: #25d366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-        }
-
-        .whatsapp-float span {
-            color: white;
-            font-size: 1.5rem;
-        }
-
         /* Responsive */
         @media (max-width: 768px) {
             .header-content {
@@ -708,7 +736,8 @@ $settings = loadData(SETTINGS_FILE);
                 flex-direction: column;
             }
 
-            .features-grid {
+            .features-grid,
+            .benefits-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -731,13 +760,54 @@ $settings = loadData(SETTINGS_FILE);
     </style>
 </head>
 <body>
+    <?php
+// Get product from URL parameter
+$product = isset($_GET['product']) ? $_GET['product'] : 'multi-track';
+
+// Define product data
+$products = [
+    'multi-track' => [
+        'title' => 'Multi Track Packing Machine',
+        'subtitle' => 'High-Speed Automatic Packaging Solution for Multiple Product Lines',
+        'price' => '₹2,50,000',
+        'image_alt' => 'Multi Track Packing Machine - Main Image'
+    ],
+    'pouch-packing' => [
+        'title' => 'Pouch Packing Machine',
+        'subtitle' => 'Efficient Pouch Packaging Solution for Various Products',
+        'price' => '₹1,80,000',
+        'image_alt' => 'Pouch Packing Machine - Main Image'
+    ],
+    'multi-track-pouch' => [
+        'title' => 'Multi Track Pouch Packing Machine',
+        'subtitle' => 'Advanced Multi-Lane Pouch Packaging for High Volume Production',
+        'price' => '₹3,20,000',
+        'image_alt' => 'Multi Track Pouch Packing Machine - Main Image'
+    ],
+    'tomato-ketchup' => [
+        'title' => 'Tomato Ketchup Pouch Packing Machine',
+        'subtitle' => 'Specialized Packaging Solution for Tomato Ketchup and Sauces',
+        'price' => '₹2,10,000',
+        'image_alt' => 'Tomato Ketchup Pouch Packing Machine - Main Image'
+    ],
+    'sauce-pouch' => [
+        'title' => 'Sauce Pouch Packaging Machine',
+        'subtitle' => 'Professional Sauce Packaging with Precision and Hygiene',
+        'price' => '₹1,95,000',
+        'image_alt' => 'Sauce Pouch Packaging Machine - Main Image'
+    ]
+];
+
+// Get current product data
+$current_product = $products[$product] ?? $products['multi-track'];
+?>
     <!-- Header -->
     <header>
         <div class="container">
             <div class="header-content">
                 <div class="logo-section">
                     <div class="logo-icon">A</div>
-                    <div class="company-name"><?php echo htmlspecialchars($settings['company_name'] ?? 'Avtaar Mechanical Works'); ?></div>
+                    <div class="company-name">Avtaar Mechanical Works</div>
                 </div>
                 <nav>
                     <ul>
@@ -747,11 +817,11 @@ $settings = loadData(SETTINGS_FILE);
                             <a href="#products"><span class="nav-icon">⚙️</span> Products ▼</a>
                             <div class="dropdown-content">
                                 <a href="all-products.php">All Products</a>
-                                <?php foreach($products as $slug => $prod): ?>
-                                    <?php if($prod['status'] === 'active'): ?>
-                                        <a href="product.php?product=<?php echo $slug; ?>"><?php echo htmlspecialchars($prod['title']); ?></a>
-                                    <?php endif; ?>
-                                <?php endforeach; ?>
+                                <a href="product.php?product=multi-track">Multi Track Packing Machine</a>
+                                <a href="product.php?product=pouch-packing">Pouch Packing Machine</a>
+                                <a href="product.php?product=multi-track-pouch">Multi Track Pouch Packing Machine</a>
+                                <a href="product.php?product=tomato-ketchup">Tomato Ketchup Pouch Packing Machine</a>
+                                <a href="product.php?product=sauce-pouch">Sauce Pouch Packaging Machine</a>
                             </div>
                         </li>
                         <li><a href="index.php#contact"><span class="nav-icon">📞</span> Contact</a></li>
@@ -771,7 +841,7 @@ $settings = loadData(SETTINGS_FILE);
                     <!-- Left Side - Image -->
                     <div class="product-image-section">
                         <div class="main-image">
-                            <span><?php echo htmlspecialchars($current_product['image_alt']); ?></span>
+                            <span><?php echo $current_product['image_alt']; ?></span>
                         </div>
                         <div class="thumbnail-images">
                             <div class="thumbnail active">
@@ -791,13 +861,13 @@ $settings = loadData(SETTINGS_FILE);
 
                     <!-- Right Side - Product Info -->
                     <div class="product-info">
-                        <h1 class="product-title"><?php echo htmlspecialchars($current_product['title']); ?></h1>
-                        <p class="product-subtitle"><?php echo htmlspecialchars($current_product['subtitle']); ?></p>
+                        <h1 class="product-title"><?php echo $current_product['title']; ?></h1>
+                        <p class="product-subtitle"><?php echo $current_product['subtitle']; ?></p>
 
                         <!-- Pricing Section -->
                         <div class="price-section">
                             <div class="starting-price">Starting Price</div>
-                            <div class="main-price"><?php echo htmlspecialchars($current_product['price']); ?></div>
+                            <div class="main-price"><?php echo $current_product['price']; ?></div>
                             <div class="price-note">*Price in INR + GST</div>
                         </div>
 
@@ -820,17 +890,36 @@ $settings = loadData(SETTINGS_FILE);
             <div class="container">
                 <h2 class="section-title">Key Features</h2>
                 <div class="features-grid">
-                    <?php 
-                    $feature_icons = ['⚡', '🎯', '🔧', '📏', '🛡️', '💻'];
-                    foreach($current_product['features'] as $index => $feature): 
-                        $icon = $feature_icons[$index % count($feature_icons)];
-                    ?>
                     <div class="feature-card">
-                        <div class="feature-icon"><?php echo $icon; ?></div>
-                        <h3 class="feature-title"><?php echo htmlspecialchars($feature); ?></h3>
-                        <p class="feature-description">Advanced feature that enhances machine performance and reliability.</p>
+                        <div class="feature-icon">⚡</div>
+                        <h3 class="feature-title">High Speed Operation</h3>
+                        <p class="feature-description">Capable of packing up to 120 pouches per minute with precision and consistent quality output.</p>
                     </div>
-                    <?php endforeach; ?>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3 class="feature-title">Multi-Track Technology</h3>
+                        <p class="feature-description">Simultaneous processing of multiple product lines for maximum efficiency and productivity.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔧</div>
+                        <h3 class="feature-title">Easy Maintenance</h3>
+                        <p class="feature-description">User-friendly design with minimal maintenance requirements and easy access to all components.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📏</div>
+                        <h3 class="feature-title">Flexible Sizing</h3>
+                        <p class="feature-description">Adjustable for various pouch sizes from 50ml to 1000ml with quick changeover capability.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🛡️</div>
+                        <h3 class="feature-title">Safety Features</h3>
+                        <p class="feature-description">Comprehensive safety systems including emergency stop, safety guards, and alarm systems.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💻</div>
+                        <h3 class="feature-title">PLC Control</h3>
+                        <p class="feature-description">Advanced PLC-based control system with touch screen interface for precise operation control.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -840,13 +929,18 @@ $settings = loadData(SETTINGS_FILE);
             <div class="container">
                 <h2 class="section-title">Product Description</h2>
                 <div class="description-content">
-                    <p><?php echo nl2br(htmlspecialchars($current_product['description'])); ?></p>
+                    <p>Our Multi Track Packing Machine represents the pinnacle of packaging technology, designed specifically for high-volume production environments. This advanced machine is engineered to handle multiple product lines simultaneously, dramatically increasing your packaging efficiency and reducing operational costs.</p>
+
+                    <p>Built with premium-grade stainless steel construction, this machine ensures durability and compliance with food-grade standards. The innovative multi-track design allows for parallel processing of different products or multiple lanes of the same product, making it ideal for manufacturers dealing with diverse product portfolios.</p>
+
+                    <p>The machine features state-of-the-art sealing technology that ensures airtight packaging, extending product shelf life and maintaining quality. With its modular design, the machine can be easily customized to meet specific production requirements and can be seamlessly integrated into existing production lines.</p>
+
+                    <p>Backed by our 25+ years of manufacturing expertise and comprehensive after-sales support, this machine is designed to deliver consistent performance and maximum return on investment for your business.</p>
                 </div>
             </div>
         </section>
 
         <!-- Specifications Section -->
-        <?php if(!empty($current_product['specifications'])): ?>
         <section class="content-section">
             <div class="container">
                 <h2 class="section-title">Technical Specifications</h2>
@@ -859,18 +953,90 @@ $settings = loadData(SETTINGS_FILE);
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach($current_product['specifications'] as $spec => $value): ?>
                             <tr>
-                                <td><?php echo htmlspecialchars($spec); ?></td>
-                                <td><?php echo htmlspecialchars($value); ?></td>
+                                <td>Production Capacity</td>
+                                <td>120 pouches per minute (per track)</td>
                             </tr>
-                            <?php endforeach; ?>
+                            <tr>
+                                <td>Number of Tracks</td>
+                                <td>4 tracks (expandable to 8 tracks)</td>
+                            </tr>
+                            <tr>
+                                <td>Pouch Size Range</td>
+                                <td>50ml to 1000ml</td>
+                            </tr>
+                            <tr>
+                                <td>Sealing Type</td>
+                                <td>Heat sealing with adjustable temperature</td>
+                            </tr>
+                            <tr>
+                                <td>Power Consumption</td>
+                                <td>15 KW (3 Phase)</td>
+                            </tr>
+                            <tr>
+                                <td>Machine Dimensions</td>
+                                <td>4000mm x 2000mm x 1800mm (L x W x H)</td>
+                            </tr>
+                            <tr>
+                                <td>Material Construction</td>
+                                <td>Stainless Steel SS-304</td>
+                            </tr>
+                            <tr>
+                                <td>Control System</td>
+                                <td>PLC with 10" Touch Screen HMI</td>
+                            </tr>
+                            <tr>
+                                <td>Air Consumption</td>
+                                <td>500 LPM at 6 Bar pressure</td>
+                            </tr>
+                            <tr>
+                                <td>Accuracy</td>
+                                <td>±1% (depending on product characteristics)</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </section>
-        <?php endif; ?>
+
+        <!-- Benefits Section -->
+        <section class="content-section">
+            <div class="container">
+                <h2 class="section-title">Benefits of Choosing Avtaar</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🏆</div>
+                        <h3 class="benefit-title">25+ Years Experience</h3>
+                        <p class="benefit-description">Quarter century of expertise in packaging machinery manufacturing and automation solutions.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🔧</div>
+                        <h3 class="benefit-title">Custom Solutions</h3>
+                        <p class="benefit-description">Tailored machines designed to meet your specific production requirements and industry standards.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🛠️</div>
+                        <h3 class="benefit-title">24/7 Support</h3>
+                        <p class="benefit-description">Comprehensive maintenance and technical support available nationwide for uninterrupted operations.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">✅</div>
+                        <h3 class="benefit-title">Quality Assurance</h3>
+                        <p class="benefit-description">ISO certified manufacturing with rigorous quality control processes and extensive testing.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">⚡</div>
+                        <h3 class="benefit-title">Fast Installation</h3>
+                        <p class="benefit-description">Quick installation with professional training and comprehensive documentation for immediate operation.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">💰</div>
+                        <h3 class="benefit-title">Best ROI</h3>
+                        <p class="benefit-description">Competitive pricing with transparent costs and maximum return on investment through efficiency gains.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- FAQ Section -->
         <section class="content-section">
@@ -906,11 +1072,29 @@ $settings = loadData(SETTINGS_FILE);
                     </div>
                     <div class="faq-item">
                         <div class="faq-question" onclick="toggleFAQ(this)">
+                            What are the power requirements?
+                            <span class="faq-arrow">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>The machine requires 15 KW, 3-phase electrical supply (415V, 50Hz) and compressed air supply at 6 Bar pressure. Detailed power specifications are provided during installation planning.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
                             Is operator training included?
                             <span class="faq-arrow">▼</span>
                         </div>
                         <div class="faq-answer">
                             <p>Yes, comprehensive operator training is included covering machine operation, maintenance procedures, troubleshooting, and safety protocols. Training materials and operation manuals are provided.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            What maintenance is required?
+                            <span class="faq-arrow">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Regular maintenance includes daily cleaning, weekly lubrication, and monthly inspections. We provide a detailed maintenance schedule and offer annual maintenance contracts for optimal performance.</p>
                         </div>
                     </div>
                 </div>
@@ -923,28 +1107,28 @@ $settings = loadData(SETTINGS_FILE);
                 <h2 class="section-title">Related Products</h2>
                 <div class="related-products-grid">
                     <?php
-                    // Get all active products except current one
+                    // Get all products except current one
                     $related_products = [];
                     foreach($products as $key => $prod) {
-                        if($key != $product && $prod['status'] === 'active') {
+                        if($key != $product) {
                             $related_products[$key] = $prod;
                         }
                     }
-
+                    
                     // Display related products
                     foreach($related_products as $key => $prod):
                     ?>
                     <div class="related-product-card">
                         <div class="related-product-image">
-                            <span><?php echo htmlspecialchars($prod['image_alt']); ?></span>
+                            <span><?php echo $prod['image_alt']; ?></span>
                         </div>
                         <div class="related-product-info">
-                            <h3><?php echo htmlspecialchars($prod['title']); ?></h3>
-                            <p class="related-product-price"><?php echo htmlspecialchars($prod['price']); ?></p>
-                            <p class="related-product-desc"><?php echo htmlspecialchars($prod['subtitle']); ?></p>
+                            <h3><?php echo $prod['title']; ?></h3>
+                            <p class="related-product-price"><?php echo $prod['price']; ?></p>
+                            <p class="related-product-desc"><?php echo $prod['subtitle']; ?></p>
                             <div class="related-product-buttons">
                                 <a href="product.php?product=<?php echo $key; ?>" class="btn-view-details">View Details</a>
-                                <button class="btn-quick-quote" onclick="getQuickQuote('<?php echo htmlspecialchars($prod['title']); ?>')">Quick Quote</button>
+                                <button class="btn-quick-quote" onclick="getQuickQuote('<?php echo $prod['title']; ?>')">Quick Quote</button>
                             </div>
                         </div>
                     </div>
@@ -994,20 +1178,20 @@ $settings = loadData(SETTINGS_FILE);
 
         // Get Today Price Function
         function getTodayPrice() {
-            const message = `Hi, I'm interested in <?php echo htmlspecialchars($current_product['title']); ?>. Please provide today's best price with detailed quotation.`;
-            window.open(`https://wa.me/<?php echo $settings['whatsapp'] ?? '919876543210'; ?>?text=${encodeURIComponent(message)}`, '_blank');
+            const message = `Hi, I'm interested in <?php echo $current_product['title']; ?>. Please provide today's best price with detailed quotation.`;
+            window.open(`https://wa.me/919876543210?text=${encodeURIComponent(message)}`, '_blank');
         }
 
         // Request Callback Function
         function requestCallback() {
-            const message = `Hi, I would like to request a callback for <?php echo htmlspecialchars($current_product['title']); ?>. Please call me to discuss requirements and pricing.`;
-            window.open(`https://wa.me/<?php echo $settings['whatsapp'] ?? '919876543210'; ?>?text=${encodeURIComponent(message)}`, '_blank');
+            const message = `Hi, I would like to request a callback for <?php echo $current_product['title']; ?>. Please call me to discuss requirements and pricing.`;
+            window.open(`https://wa.me/919876543210?text=${encodeURIComponent(message)}`, '_blank');
         }
 
         // WhatsApp Float Button
         function openWhatsApp() {
-            const message = `Hi, I'm viewing the <?php echo htmlspecialchars($current_product['title']); ?> page. Please provide more information about this product.`;
-            window.open(`https://wa.me/<?php echo $settings['whatsapp'] ?? '919876543210'; ?>?text=${encodeURIComponent(message)}`, '_blank');
+            const message = `Hi, I'm viewing the <?php echo $current_product['title']; ?> page. Please provide more information about this product.`;
+            window.open(`https://wa.me/919876543210?text=${encodeURIComponent(message)}`, '_blank');
         }
 
         // Download catalog function
@@ -1016,3 +1200,24 @@ $settings = loadData(SETTINGS_FILE);
         }
 
         // Quick Quote Function
+        function getQuickQuote(productName) {
+            const message = `Hi, I need a quick quote for ${productName}. Please provide pricing and availability details.`;
+            window.open(`https://wa.me/919876543210?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
