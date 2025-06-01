@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -567,6 +566,47 @@
     </style>
 </head>
 <body>
+    <?php
+// Get product from URL parameter
+$product = isset($_GET['product']) ? $_GET['product'] : 'multi-track';
+
+// Define product data
+$products = [
+    'multi-track' => [
+        'title' => 'Multi Track Packing Machine',
+        'subtitle' => 'High-Speed Automatic Packaging Solution for Multiple Product Lines',
+        'price' => '₹2,50,000',
+        'image_alt' => 'Multi Track Packing Machine - Main Image'
+    ],
+    'pouch-packing' => [
+        'title' => 'Pouch Packing Machine',
+        'subtitle' => 'Efficient Pouch Packaging Solution for Various Products',
+        'price' => '₹1,80,000',
+        'image_alt' => 'Pouch Packing Machine - Main Image'
+    ],
+    'multi-track-pouch' => [
+        'title' => 'Multi Track Pouch Packing Machine',
+        'subtitle' => 'Advanced Multi-Lane Pouch Packaging for High Volume Production',
+        'price' => '₹3,20,000',
+        'image_alt' => 'Multi Track Pouch Packing Machine - Main Image'
+    ],
+    'tomato-ketchup' => [
+        'title' => 'Tomato Ketchup Pouch Packing Machine',
+        'subtitle' => 'Specialized Packaging Solution for Tomato Ketchup and Sauces',
+        'price' => '₹2,10,000',
+        'image_alt' => 'Tomato Ketchup Pouch Packing Machine - Main Image'
+    ],
+    'sauce-pouch' => [
+        'title' => 'Sauce Pouch Packaging Machine',
+        'subtitle' => 'Professional Sauce Packaging with Precision and Hygiene',
+        'price' => '₹1,95,000',
+        'image_alt' => 'Sauce Pouch Packaging Machine - Main Image'
+    ]
+];
+
+// Get current product data
+$current_product = $products[$product] ?? $products['multi-track'];
+?>
     <!-- Header -->
     <header>
         <div class="container">
@@ -598,7 +638,7 @@
                     <!-- Left Side - Image -->
                     <div class="product-image-section">
                         <div class="main-image">
-                            <span>Multi Track Packing Machine - Main Image</span>
+                            <span><?php echo $current_product['image_alt']; ?></span>
                         </div>
                         <div class="thumbnail-images">
                             <div class="thumbnail active">
@@ -618,13 +658,13 @@
 
                     <!-- Right Side - Product Info -->
                     <div class="product-info">
-                        <h1 class="product-title">Multi Track Packing Machine</h1>
-                        <p class="product-subtitle">High-Speed Automatic Packaging Solution for Multiple Product Lines</p>
-                        
+                        <h1 class="product-title"><?php echo $current_product['title']; ?></h1>
+                        <p class="product-subtitle"><?php echo $current_product['subtitle']; ?></p>
+
                         <!-- Pricing Section -->
                         <div class="price-section">
                             <div class="starting-price">Starting Price</div>
-                            <div class="main-price">₹2,50,000</div>
+                            <div class="main-price"><?php echo $current_product['price']; ?></div>
                             <div class="price-note">*Price in INR + GST</div>
                         </div>
 
@@ -687,11 +727,11 @@
                 <h2 class="section-title">Product Description</h2>
                 <div class="description-content">
                     <p>Our Multi Track Packing Machine represents the pinnacle of packaging technology, designed specifically for high-volume production environments. This advanced machine is engineered to handle multiple product lines simultaneously, dramatically increasing your packaging efficiency and reducing operational costs.</p>
-                    
+
                     <p>Built with premium-grade stainless steel construction, this machine ensures durability and compliance with food-grade standards. The innovative multi-track design allows for parallel processing of different products or multiple lanes of the same product, making it ideal for manufacturers dealing with diverse product portfolios.</p>
-                    
+
                     <p>The machine features state-of-the-art sealing technology that ensures airtight packaging, extending product shelf life and maintaining quality. With its modular design, the machine can be easily customized to meet specific production requirements and can be seamlessly integrated into existing production lines.</p>
-                    
+
                     <p>Backed by our 25+ years of manufacturing expertise and comprehensive after-sales support, this machine is designed to deliver consistent performance and maximum return on investment for your business.</p>
                 </div>
             </div>
@@ -869,7 +909,7 @@
         function toggleFAQ(element) {
             const answer = element.nextElementSibling;
             const arrow = element.querySelector('.faq-arrow');
-            
+
             // Close all other FAQs
             document.querySelectorAll('.faq-question').forEach(item => {
                 if (item !== element) {
@@ -878,7 +918,7 @@
                     item.querySelector('.faq-arrow').style.transform = 'rotate(0deg)';
                 }
             });
-            
+
             // Toggle current FAQ
             element.classList.toggle('active');
             answer.classList.toggle('active');
@@ -894,19 +934,19 @@
 
         // Get Today Price Function
         function getTodayPrice() {
-            const message = `Hi, I'm interested in Multi Track Packing Machine. Please provide today's best price with detailed quotation.`;
+            const message = `Hi, I'm interested in <?php echo $current_product['title']; ?>. Please provide today's best price with detailed quotation.`;
             window.open(`https://wa.me/919876543210?text=${encodeURIComponent(message)}`, '_blank');
         }
 
         // Request Callback Function
         function requestCallback() {
-            const message = `Hi, I would like to request a callback for Multi Track Packing Machine. Please call me to discuss requirements and pricing.`;
+            const message = `Hi, I would like to request a callback for <?php echo $current_product['title']; ?>. Please call me to discuss requirements and pricing.`;
             window.open(`https://wa.me/919876543210?text=${encodeURIComponent(message)}`, '_blank');
         }
 
         // WhatsApp Float Button
         function openWhatsApp() {
-            const message = `Hi, I'm viewing the Multi Track Packing Machine page. Please provide more information about this product.`;
+            const message = `Hi, I'm viewing the <?php echo $current_product['title']; ?> page. Please provide more information about this product.`;
             window.open(`https://wa.me/919876543210?text=${encodeURIComponent(message)}`, '_blank');
         }
 
