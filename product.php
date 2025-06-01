@@ -71,44 +71,37 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1.5rem;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         nav a {
             color: #333;
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            transition: all 0.3s;
             padding: 8px 12px;
             border-radius: 5px;
+            font-size: 0.9rem;
+            white-space: nowrap;
         }
 
         nav a:hover {
             color: #ff6600;
             background: #f8f9fa;
+            transform: translateY(-1px);
         }
 
-        .back-btn {
+        nav a[href="index.php"] {
             background: #ff6600;
             color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
             font-weight: bold;
-            transition: background 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
         }
 
-        .back-btn:hover {
+        nav a[href="index.php"]:hover {
             background: #e55a00;
+            color: white;
         }
 
         /* Main Content */
@@ -193,52 +186,33 @@
         }
 
         .price-section {
-            background: linear-gradient(135deg, #ff6600, #e55a00);
-            color: white;
-            padding: 2rem;
-            border-radius: 15px;
+            background: #fff;
+            border: 2px solid #ff6600;
+            border-radius: 10px;
+            padding: 1.5rem;
             margin-bottom: 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .price-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .price-content {
-            position: relative;
-            z-index: 2;
+            text-align: center;
         }
 
         .starting-price {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            opacity: 0.9;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .main-price {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: bold;
-            margin-bottom: 0.5rem;
+            color: #ff6600;
+            margin-bottom: 0.3rem;
         }
 
         .price-note {
-            font-size: 0.9rem;
-            opacity: 0.8;
-            margin-bottom: 1.5rem;
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 0;
         }
 
         .action-buttons {
@@ -547,6 +521,23 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                width: 100%;
+                text-align: center;
+            }
+
+            nav a {
+                font-size: 0.8rem;
+                padding: 6px 10px;
+            }
+
             .product-layout {
                 grid-template-columns: 1fr;
                 gap: 2rem;
@@ -570,7 +561,7 @@
             }
 
             .main-price {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -586,7 +577,12 @@
                 </div>
                 <nav>
                     <ul>
-                        <li><a href="index.php" class="back-btn">← Back to Home</a></li>
+                        <li><a href="index.php">🏠 Home</a></li>
+                        <li><a href="product.php?product=multi-track">Multi Track Packing Machine</a></li>
+                        <li><a href="product.php?product=pouch-packing">Pouch Packing Machine</a></li>
+                        <li><a href="product.php?product=multi-track-pouch">Multi Track Pouch Packing Machine</a></li>
+                        <li><a href="product.php?product=tomato-ketchup">Tomato Ketchup Pouch Packing Machine</a></li>
+                        <li><a href="product.php?product=sauce-pouch">Sauce Pouch Packaging Machine</a></li>
                     </ul>
                 </nav>
             </div>
@@ -627,11 +623,9 @@
                         
                         <!-- Pricing Section -->
                         <div class="price-section">
-                            <div class="price-content">
-                                <div class="starting-price">Starting Price</div>
-                                <div class="main-price">₹2,50,000</div>
-                                <div class="price-note">*Price in INR + GST | Final price may vary based on specifications</div>
-                            </div>
+                            <div class="starting-price">Starting Price</div>
+                            <div class="main-price">₹2,50,000</div>
+                            <div class="price-note">*Price in INR + GST</div>
                         </div>
 
                         <!-- Action Buttons -->
