@@ -154,37 +154,341 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f0f0f0" width="1200" height="600"/><text x="600" y="300" font-size="24" text-anchor="middle" fill="%23999">Machine Manufacturing</text></svg>');
-            background-size: cover;
-            background-position: center;
+            background: #333;
             color: white;
-            text-align: center;
-            padding: 120px 0;
+            padding: 60px 0;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-text {
+            padding-right: 2rem;
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 1rem;
+            color: white;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+
+        .hero h1 .highlight {
             color: #ff6600;
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 2rem;
+            color: #ccc;
+            line-height: 1.6;
         }
 
-        .cta-btn {
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-orange {
             background: #ff6600;
             color: white;
             padding: 15px 30px;
             border: none;
             border-radius: 5px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             cursor: pointer;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: bold;
+        }
+
+        .btn-orange:hover {
+            background: #e55a00;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #ff6600;
+            padding: 15px 30px;
+            border: 2px solid #ff6600;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: bold;
+        }
+
+        .btn-outline:hover {
+            background: #ff6600;
+            color: white;
+        }
+
+        .hero-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 1rem;
+            height: 400px;
+        }
+
+        .hero-image {
+            background: #555;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .hero-image.large {
+            grid-row: span 2;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp-float span {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        /* Statistics Section */
+        .stats-section {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .stats-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .stats-header h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .stats-header p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .stat-icon {
+            width: 80px;
+            height: 80px;
+            background: #ff6600;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .stat-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Hot Products */
+        .products {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .products h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            height: 250px;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: #666;
+            position: relative;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #ff6600;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .product-badge.hot {
+            background: #ff6600;
+        }
+
+        .product-badge.bestseller {
+            background: #ff6600;
+        }
+
+        .product-badge.featured {
+            background: #ff6600;
+        }
+
+        .product-info {
+            padding: 2rem;
+        }
+
+        .product-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .product-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .whatsapp-btn {
+            background: #25d366;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            flex: 1;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
             transition: background 0.3s;
         }
 
-        .cta-btn:hover {
+        .whatsapp-btn:hover {
+            background: #1ea952;
+        }
+
+        .quote-btn {
+            background: #ff6600;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: background 0.3s;
+        }
+
+        .quote-btn:hover {
             background: #e55a00;
         }
 
@@ -221,91 +525,6 @@
             max-width: 100%;
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        /* Hot Products */
-        .products {
-            padding: 80px 0;
-            background: #f8f9fa;
-        }
-
-        .products h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #333;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .product-image {
-            height: 200px;
-            background: #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        .product-info {
-            padding: 1.5rem;
-        }
-
-        .product-info h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: #333;
-        }
-
-        .product-price {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #ff6600;
-            margin-bottom: 1rem;
-        }
-
-        .product-buttons {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .whatsapp-btn {
-            background: #25d366;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            flex: 1;
-            font-weight: bold;
-        }
-
-        .price-btn {
-            background: #ff6600;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            flex: 1;
-            font-weight: bold;
         }
 
         /* Industry Section */
@@ -455,10 +674,28 @@
                 background: #f8f9fa;
                 margin-top: 0.5rem;
             }
-        }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
 
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .hero-images {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+
+            .hero-image.large {
+                grid-row: span 1;
             }
 
             .about-content {
@@ -466,6 +703,10 @@
             }
 
             .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -507,9 +748,131 @@
         <!-- Hero Section -->
         <section id="home" class="hero">
             <div class="container">
-                <h1>Avtaar Mechanical Works</h1>
-                <p>Leading Machine Manufacturer - Quality Packaging Solutions</p>
-                <button class="cta-btn">Explore Our Products</button>
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Professional <span class="highlight">Packaging Solutions</span></h1>
+                        <p>Excellence in manufacturing packaging machines and industrial automation solutions since 1995</p>
+                        <div class="hero-buttons">
+                            <button class="btn-orange">
+                                <span>⚙️</span> VIEW PRODUCTS
+                            </button>
+                            <button class="btn-outline">
+                                <span>📞</span> GET QUOTE
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hero-images">
+                        <div class="hero-image large">
+                            <span>Packaging Machine Image 1</span>
+                        </div>
+                        <div class="hero-image">
+                            <span>Machine Image 2</span>
+                        </div>
+                        <div class="hero-image">
+                            <span>Machine Image 3</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WhatsApp Float Button -->
+        <div class="whatsapp-float">
+            <span>💬</span>
+        </div>
+
+        <!-- Statistics Section -->
+        <section class="stats-section">
+            <div class="container">
+                <div class="stats-header">
+                    <h2>Leading Manufacturer of Packaging Solutions</h2>
+                    <p>Avtaar Mechanical Works has been at the forefront of packaging machinery innovation for over 25 years. We specialize in designing, manufacturing, and delivering high-quality packaging machines that meet the diverse needs of industries worldwide.</p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-icon">🏆</div>
+                        <div class="stat-number">25+</div>
+                        <div class="stat-title">Years Experience</div>
+                        <div class="stat-description">Quarter century of excellence in packaging machinery manufacturing and industrial automation solutions.</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-number">500+</div>
+                        <div class="stat-title">Happy Clients</div>
+                        <div class="stat-description">Trusted by leading companies across food processing, pharmaceuticals, and manufacturing industries.</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">🌍</div>
+                        <div class="stat-number">Global</div>
+                        <div class="stat-title">Reach</div>
+                        <div class="stat-description">Serving clients worldwide with innovative packaging solutions and comprehensive after-sales support.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hot Products -->
+        <section id="products" class="products">
+            <div class="container">
+                <h2>Hot Products</h2>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <div class="product-badge hot">Hot Product</div>
+                            <span>Automatic Packaging Machine</span>
+                        </div>
+                        <div class="product-info">
+                            <h3>Automatic Packaging Machine</h3>
+                            <div class="product-description">High-speed automatic packaging solution for various product types with advanced control systems.</div>
+                            <div class="product-buttons">
+                                <button class="whatsapp-btn">
+                                    <span>💬</span> WHATSAPP
+                                </button>
+                                <button class="quote-btn">
+                                    GET QUOTE
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <div class="product-badge bestseller">Best Seller</div>
+                            <span>Food Processing Line</span>
+                        </div>
+                        <div class="product-info">
+                            <h3>Food Processing Line</h3>
+                            <div class="product-description">Complete food processing and packaging line with hygiene standards and quality control systems.</div>
+                            <div class="product-buttons">
+                                <button class="whatsapp-btn">
+                                    <span>💬</span> WHATSAPP
+                                </button>
+                                <button class="quote-btn">
+                                    GET QUOTE
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <div class="product-badge featured">Featured</div>
+                            <span>Industrial Sealing Machine</span>
+                        </div>
+                        <div class="product-info">
+                            <h3>Industrial Sealing Machine</h3>
+                            <div class="product-description">Heavy-duty sealing machines for industrial packaging with precise temperature control.</div>
+                            <div class="product-buttons">
+                                <button class="whatsapp-btn">
+                                    <span>💬</span> WHATSAPP
+                                </button>
+                                <button class="quote-btn">
+                                    GET QUOTE
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -526,122 +889,6 @@
                     <div class="about-image">
                         <div style="background: #ddd; height: 300px; display: flex; align-items: center; justify-content: center; border-radius: 10px;">
                             <span style="color: #666;">Factory Image</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Hot Products -->
-        <section id="products" class="products">
-            <div class="container">
-                <h2>Hot Products</h2>
-                <div class="products-grid">
-                    <div class="product-card">
-                        <div class="product-image">Multi Track Packing Machine Image</div>
-                        <div class="product-info">
-                            <h3>Multi Track Packing Machine</h3>
-                            <div class="product-price">₹2,50,000</div>
-                            <div class="product-buttons">
-                                <button class="whatsapp-btn">WhatsApp</button>
-                                <button class="price-btn">Get Today Price</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <div class="product-image">Pouch Packing Machine Image</div>
-                        <div class="product-info">
-                            <h3>Pouch Packing Machine</h3>
-                            <div class="product-price">₹1,80,000</div>
-                            <div class="product-buttons">
-                                <button class="whatsapp-btn">WhatsApp</button>
-                                <button class="price-btn">Get Today Price</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <div class="product-image">Multi Track Pouch Packing Machine Image</div>
-                        <div class="product-info">
-                            <h3>Multi Track Pouch Packing Machine</h3>
-                            <div class="product-price">₹3,20,000</div>
-                            <div class="product-buttons">
-                                <button class="whatsapp-btn">WhatsApp</button>
-                                <button class="price-btn">Get Today Price</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <div class="product-image">Tomato Ketchup Pouch Packing Machine Image</div>
-                        <div class="product-info">
-                            <h3>Tomato Ketchup Pouch Packing Machine</h3>
-                            <div class="product-price">₹2,80,000</div>
-                            <div class="product-buttons">
-                                <button class="whatsapp-btn">WhatsApp</button>
-                                <button class="price-btn">Get Today Price</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <div class="product-image">Sauce Pouch Packaging Machine Image</div>
-                        <div class="product-info">
-                            <h3>Sauce Pouch Packaging Machine</h3>
-                            <div class="product-price">₹2,95,000</div>
-                            <div class="product-buttons">
-                                <button class="whatsapp-btn">WhatsApp</button>
-                                <button class="price-btn">Get Today Price</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <div class="product-image">Automatic Packing Machine Image</div>
-                        <div class="product-info">
-                            <h3>Automatic Packing Machine</h3>
-                            <div class="product-price">₹4,50,000</div>
-                            <div class="product-buttons">
-                                <button class="whatsapp-btn">WhatsApp</button>
-                                <button class="price-btn">Get Today Price</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <div class="product-image">Liquid Packaging Machine Image</div>
-                        <div class="product-info">
-                            <h3>Liquid Packaging Machine</h3>
-                            <div class="product-price">₹3,75,000</div>
-                            <div class="product-buttons">
-                                <button class="whatsapp-btn">WhatsApp</button>
-                                <button class="price-btn">Get Today Price</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <div class="product-image">Powder Packing Machine Image</div>
-                        <div class="product-info">
-                            <h3>Powder Packing Machine</h3>
-                            <div class="product-price">₹2,25,000</div>
-                            <div class="product-buttons">
-                                <button class="whatsapp-btn">WhatsApp</button>
-                                <button class="price-btn">Get Today Price</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <div class="product-image">Granule Packing Machine Image</div>
-                        <div class="product-info">
-                            <h3>Granule Packing Machine</h3>
-                            <div class="product-price">₹2,60,000</div>
-                            <div class="product-buttons">
-                                <button class="whatsapp-btn">WhatsApp</button>
-                                <button class="price-btn">Get Today Price</button>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -770,7 +1017,7 @@
             });
         });
 
-        // WhatsApp and Price button functionality
+        // WhatsApp and Quote button functionality
         document.querySelectorAll('.whatsapp-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const productName = this.closest('.product-card').querySelector('h3').textContent;
@@ -779,11 +1026,17 @@
             });
         });
 
-        document.querySelectorAll('.price-btn').forEach(btn => {
+        document.querySelectorAll('.quote-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const productName = this.closest('.product-card').querySelector('h3').textContent;
                 alert(`For current pricing of ${productName}, please contact us at +91 98765 43210 or send us a WhatsApp message.`);
             });
+        });
+
+        // WhatsApp Float Button
+        document.querySelector('.whatsapp-float').addEventListener('click', function() {
+            const message = `Hi, I'm interested in your packaging machines. Please provide more information.`;
+            window.open(`https://wa.me/919876543210?text=${encodeURIComponent(message)}`, '_blank');
         });
 
         // Download catalog button
@@ -791,9 +1044,15 @@
             alert('Catalog download will be available soon. Please contact us for detailed product information.');
         });
 
-        // CTA button
-        document.querySelector('.cta-btn').addEventListener('click', function() {
+        // Hero buttons
+        document.querySelector('.btn-orange').addEventListener('click', function() {
             document.querySelector('#products').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        document.querySelector('.btn-outline').addEventListener('click', function() {
+            document.querySelector('#contact').scrollIntoView({
                 behavior: 'smooth'
             });
         });
