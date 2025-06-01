@@ -562,33 +562,184 @@
 
         /* Why Choose Us */
         .why-choose {
-            padding: 80px 0;
-            background: #333;
+            padding: 100px 0;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .why-choose::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ff6600" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="%23ff6600" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="%23ff6600" opacity="0.2"/><circle cx="90" cy="40" r="0.5" fill="%23ff6600" opacity="0.2"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        .why-choose .container {
+            position: relative;
+            z-index: 2;
         }
 
         .why-choose h2 {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
+            font-size: 3rem;
+            margin-bottom: 1rem;
             color: #ff6600;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .why-choose-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
         }
 
         .feature {
+            background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
+            border-radius: 20px;
+            padding: 3rem 2rem;
             text-align: center;
-            padding: 2rem;
+            box-shadow: 
+                0 10px 30px rgba(0,0,0,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+            border: 1px solid rgba(255, 102, 0, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ff6600, transparent);
+            transition: left 0.6s ease;
+        }
+
+        .feature:hover::before {
+            left: 100%;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 
+                0 20px 40px rgba(255, 102, 0, 0.2),
+                0 10px 20px rgba(0,0,0,0.4),
+                inset 0 1px 0 rgba(255,255,255,0.2);
+            border-color: rgba(255, 102, 0, 0.4);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ff6600, #e55a00);
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            box-shadow: 
+                0 8px 16px rgba(255, 102, 0, 0.3),
+                inset 0 2px 4px rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .feature:hover .feature-icon {
+            transform: rotateY(360deg) scale(1.1);
+            box-shadow: 
+                0 12px 24px rgba(255, 102, 0, 0.4),
+                inset 0 2px 4px rgba(255,255,255,0.3);
         }
 
         .feature h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
             color: #ff6600;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            transition: color 0.3s ease;
+        }
+
+        .feature:hover h3 {
+            color: #fff;
+        }
+
+        .feature p {
+            color: #ccc;
+            line-height: 1.7;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .feature:hover p {
+            color: #fff;
+        }
+
+        .features-highlight {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, #ff6600, #e55a00);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .features-highlight::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .features-highlight h3 {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .features-highlight p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.9);
+            position: relative;
+            z-index: 2;
         }
 
         /* Footer */
@@ -924,31 +1075,42 @@
         <section class="why-choose">
             <div class="container">
                 <h2>Why Choose Avtaar Mechanical Works?</h2>
+                <p class="why-choose-subtitle">Excellence in every machine we manufacture. Trust the experts who deliver quality, innovation, and reliability for over 25 years.</p>
                 <div class="features-grid">
                     <div class="feature">
+                        <div class="feature-icon">🏆</div>
                         <h3>Quality Assurance</h3>
-                        <p>ISO certified manufacturing with rigorous quality control processes.</p>
+                        <p>ISO certified manufacturing with rigorous quality control processes. Every machine undergoes extensive testing to ensure superior performance and durability.</p>
                     </div>
                     <div class="feature">
+                        <div class="feature-icon">🚀</div>
                         <h3>Innovative Technology</h3>
-                        <p>Latest technology integration for enhanced efficiency and productivity.</p>
+                        <p>Latest technology integration with smart automation features for enhanced efficiency, productivity, and user-friendly operation.</p>
                     </div>
                     <div class="feature">
+                        <div class="feature-icon">🛠️</div>
                         <h3>Custom Solutions</h3>
-                        <p>Tailored packaging solutions to meet specific industry requirements.</p>
+                        <p>Tailored packaging solutions designed to meet specific industry requirements. We customize every aspect to fit your unique needs.</p>
                     </div>
                     <div class="feature">
-                        <h3>After-Sales Support</h3>
-                        <p>Comprehensive maintenance and support services nationwide.</p>
+                        <div class="feature-icon">🤝</div>
+                        <h3>24/7 Support</h3>
+                        <p>Comprehensive maintenance and technical support services available nationwide. Our expert team is always ready to assist you.</p>
                     </div>
                     <div class="feature">
-                        <h3>Competitive Pricing</h3>
-                        <p>Best value for money with transparent pricing and no hidden costs.</p>
+                        <div class="feature-icon">💰</div>
+                        <h3>Best Value</h3>
+                        <p>Competitive pricing with transparent costs and no hidden charges. Get the best return on investment with our cost-effective solutions.</p>
                     </div>
                     <div class="feature">
-                        <h3>Timely Delivery</h3>
-                        <p>On-time delivery with proper installation and training services.</p>
+                        <div class="feature-icon">⚡</div>
+                        <h3>Fast Delivery</h3>
+                        <p>On-time delivery with professional installation, operator training, and comprehensive documentation for immediate operation.</p>
                     </div>
+                </div>
+                <div class="features-highlight">
+                    <h3>🌟 25+ Years of Manufacturing Excellence</h3>
+                    <p>Join 500+ satisfied customers who trust Avtaar Mechanical Works for their packaging solutions. Experience the difference quality makes!</p>
                 </div>
             </div>
         </section>
