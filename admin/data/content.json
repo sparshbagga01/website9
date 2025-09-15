@@ -1,0 +1,17 @@
+{
+    "hero": {
+        "title": "Professional Packaging Solutions",
+        "subtitle": "Excellence in manufacturing packaging machines and industrial automation solutions since 1995",
+        "button1_text": "VIEW PRODUCTS",
+        "button2_text": "GET QUOTE"
+    },
+    "about": {
+        "title": "About Us",
+        "content": "Avtaar Mechanical Works is a leading manufacturer of high-quality packaging machines..."
+    },
+    "stats": {
+        "experience": "25+",
+        "clients": "500+",
+        "reach": "Global"
+    }
+}

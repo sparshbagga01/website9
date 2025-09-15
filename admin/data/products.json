@@ -1,0 +1,45 @@
+{
+    "multi-track": {
+        "title": "Multi Track Packing Machine",
+        "subtitle": "High-Speed Automatic Packaging Solution for Multiple Product Lines",
+        "price": "\u20b92,50,000",
+        "image_alt": "Multi Track Packing Machine - Main Image",
+        "category": "Automatic",
+        "capacity": "120 ppm",
+        "description": "Our Multi Track Packing Machine represents the pinnacle of packaging technology...",
+        "features": [
+            "4-track parallel processing",
+            "PLC touch screen control",
+            "Adjustable pouch sizes",
+            "High-speed operation"
+        ],
+        "specifications": {
+            "Production Capacity": "120 pouches per minute (per track)",
+            "Number of Tracks": "4 tracks (expandable to 8 tracks)",
+            "Pouch Size Range": "50ml to 1000ml",
+            "Power Consumption": "15 KW (3 Phase)"
+        },
+        "status": "active"
+    },
+    "pouch-packing": {
+        "title": "Pouch Packing Machine",
+        "subtitle": "Efficient Pouch Packaging Solution for Various Products",
+        "price": "\u20b91,80,000",
+        "image_alt": "Pouch Packing Machine - Main Image",
+        "category": "Semi-Automatic",
+        "capacity": "80 ppm",
+        "description": "Efficient and reliable pouch packaging machine designed for various products...",
+        "features": [
+            "Flexible pouch sizes",
+            "Easy operation",
+            "Low maintenance",
+            "Cost-effective solution"
+        ],
+        "specifications": {
+            "Production Capacity": "80 pouches per minute",
+            "Pouch Size Range": "50ml to 500ml",
+            "Power Consumption": "10 KW (3 Phase)"
+        },
+        "status": "active"
+    }
+}
